@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 # Load dataset
-df = pd.read_csv('Dasbord/final_df.csv')
+df = pd.read_csv('final_df.csv')
 
 # Konversi tanggal
 df['dteday'] = pd.to_datetime(df['dteday'])
@@ -63,7 +63,7 @@ workday_trend = filtered_df.groupby('workingday')['cnt'].agg(['sum', 'mean']).re
 workday_trend['workingday'] = workday_trend['workingday'].map({0: 'Hari Libur', 1: 'Hari Kerja'})
 
 fig, ax = plt.subplots(figsize=(6, 4))
-sns.barplot(data=workday_trend, x='workingday', y='sum', palette='coolwarm', ax=ax)
+sns.barplot(data=workday_trend, x='workingday', y='mean', palette='coolwarm', ax=ax)
 ax.set_xlabel("Tipe Hari")
 ax.set_ylabel("Jumlah Penyewaan")
 ax.set_title("Penyewaan Sepeda pada Hari Kerja vs Hari Libur")
